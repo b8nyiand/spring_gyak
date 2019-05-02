@@ -36,8 +36,4 @@ public class TodolistController {
         return ResponseEntity.ok(todolistService.listItems());
     }
 
-
-
-
-
 }

@@ -1,6 +1,7 @@
 package hu.flowacademy.todolist.repository;
 
 import hu.flowacademy.todolist.domain.TodoItem;
+import hu.flowacademy.todolist.exception.TodoItemNotFoundException;
 import hu.flowacademy.todolist.util.TodolistUtils;
 import org.springframework.stereotype.Repository;
 
@@ -27,6 +28,9 @@ public class TodolistRepository {
     }
 
     public String delete(String id) {
+        if (todoList.get(id) == null) {
+            throw new TodoItemNotFoundException(id);
+        }
         todoList.remove(id);
         TodolistUtils.logList(todoList);
         return id;
