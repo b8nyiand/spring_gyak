@@ -1,9 +1,22 @@
 package hu.flowacademy.todolist.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "todo_item")
 public class TodoItem {
 
+    @Id
+    @Column(name = "id", length = 10)
     private String id;
+
+    @Column(name = "description", length = 300)
     private String description;
+
+    @Column(name = "done")
     private Boolean done;
 
     public String getId() {
