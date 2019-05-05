@@ -27,13 +27,20 @@ public class TodolistController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> deleteTodoItem(@PathVariable String id) {
-        return ResponseEntity.ok(todolistService.delete(id));
+    public ResponseEntity<Void> deleteTodoItem(@PathVariable String id) {
+        todolistService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/list-items")
     public ResponseEntity<List<TodoItem>> listTodoItems() {
         return ResponseEntity.ok(todolistService.listItems());
+    }
+
+
+    @GetMapping("/find-item/{id}")
+    public ResponseEntity<TodoItem> findOneItem(@PathVariable String id) {
+        return ResponseEntity.ok(todolistService.getOneItem(id));
     }
 
 }

@@ -1,11 +1,14 @@
 package hu.flowacademy.todolist.service;
 
 import hu.flowacademy.todolist.domain.TodoItem;
+import hu.flowacademy.todolist.exception.TodoItemNotFoundException;
 import hu.flowacademy.todolist.repository.TodolistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TodolistService {
@@ -17,12 +20,23 @@ public class TodolistService {
         return todolistRepository.save(todoItem);
     }
 
-    public String delete(String id) {
-        return todolistRepository.delete(id);
+    public void delete(String id) {
+        try {
+            todolistRepository.deleteById(id);
+        } catch (EmptyResultDataAccessException e) {
+            throw new TodoItemNotFoundException(id);
+        }
     }
 
     public List<TodoItem> listItems() {
-        return todolistRepository.getItems();
+        return todolistRepository.findAll();
+    }
+
+    public TodoItem getOneItem(String id) {
+        if (todolistRepository.findById(id).isPresent()) {
+            return todolistRepository.findById(id).get();
+        }
+        throw new TodoItemNotFoundException(id);
     }
 
 }
