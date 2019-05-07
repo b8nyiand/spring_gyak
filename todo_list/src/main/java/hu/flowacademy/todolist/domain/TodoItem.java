@@ -1,18 +1,16 @@
 package hu.flowacademy.todolist.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "todo_item")
 public class TodoItem {
 
-    public TodoItem(String id, String description, Boolean done) {
+    public TodoItem(String id, String description, Boolean done, User user) {
         this.id = id;
         this.description = description;
         this.done = done;
+        this.user = user;
     }
 
     public TodoItem() {
@@ -27,6 +25,10 @@ public class TodoItem {
 
     @Column(name = "done")
     private Boolean done;
+
+    @OneToOne
+    @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "fk_todoitem_userid"))
+    private User user;
 
     public String getId() {
         return id;
