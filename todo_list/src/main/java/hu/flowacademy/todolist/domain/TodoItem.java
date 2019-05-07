@@ -9,6 +9,15 @@ import javax.persistence.Table;
 @Table(name = "todo_item")
 public class TodoItem {
 
+    public TodoItem(String id, String description, Boolean done) {
+        this.id = id;
+        this.description = description;
+        this.done = done;
+    }
+
+    public TodoItem() {
+    }
+
     @Id
     @Column(name = "id", length = 10)
     private String id;
