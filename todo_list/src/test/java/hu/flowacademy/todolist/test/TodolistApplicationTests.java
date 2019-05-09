@@ -1,4 +1,4 @@
-package hu.flowacademy.todolist;
+package hu.flowacademy.todolist.test;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

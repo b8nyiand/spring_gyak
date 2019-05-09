@@ -16,4 +16,6 @@ public interface TodolistRepository extends JpaRepository<TodoItem, String> {
     @Query("FROM TodoItem todoItem WHERE todoItem.user.login = ?1")
     public List<TodoItem> findByUserLogint(@Param("login") String login);
 
+    public TodoItem findByDescription(String id);
+
 }

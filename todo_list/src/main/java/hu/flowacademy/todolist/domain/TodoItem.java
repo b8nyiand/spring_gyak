@@ -14,6 +14,12 @@ public class TodoItem {
         this.user = user;
     }
 
+    public TodoItem(String id, String description, Boolean done) {
+        this.id = id;
+        this.description = description;
+        this.done = done;
+    }
+
     public TodoItem() {
     }
 
