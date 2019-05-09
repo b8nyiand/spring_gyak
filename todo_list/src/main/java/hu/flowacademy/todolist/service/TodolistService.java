@@ -45,6 +45,8 @@ public class TodolistService {
         return todolistRepository.findByUserLogint(login);
     }
 
-
+    public TodoItem getItemByDescription(String description) {
+        return todolistRepository.findByDescription(description);
+    }
 
 }
