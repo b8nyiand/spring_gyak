@@ -1,5 +1,7 @@
 package hu.flowacademy.todolist.domain;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 
 @Entity
@@ -17,6 +19,8 @@ public class SubtaskItem {
     }
 
     @Id
+    @SequenceGenerator(name="subtaskItemSeqGenerator", initialValue = 1, allocationSize = 1)
+    @GeneratedValue(generator = "subtaskItemSeqGenerator", strategy = GenerationType.SEQUENCE)
     @Column(name = "id")
     private Long id;
 
