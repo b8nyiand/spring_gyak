@@ -43,4 +43,9 @@ public class TodolistController {
         return ResponseEntity.ok(todolistService.getOneItem(id));
     }
 
+    @GetMapping("/find-item-by-login/{login}")
+    public ResponseEntity<List<TodoItem>> findOneItemByLogin(@PathVariable String login) {
+        return ResponseEntity.ok(todolistService.getItemsByLogin(login));
+    }
+
 }

@@ -6,11 +6,13 @@ import hu.flowacademy.todolist.repository.TodolistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class TodolistService {
 
     @Autowired
@@ -38,5 +40,11 @@ public class TodolistService {
         }
         throw new TodoItemNotFoundException(id);
     }
+
+    public List<TodoItem> getItemsByLogin(String login) {
+        return todolistRepository.findByUserLogint(login);
+    }
+
+
 
 }

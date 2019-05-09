@@ -1,6 +1,7 @@
 package hu.flowacademy.todolist.domain;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "todo_item")
@@ -29,6 +30,9 @@ public class TodoItem {
     @OneToOne
     @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "fk_todoitem_userid"))
     private User user;
+
+    @OneToMany(mappedBy = "todoItem")
+    private List<SubtaskItem> subtaskItems;
 
     public String getId() {
         return id;

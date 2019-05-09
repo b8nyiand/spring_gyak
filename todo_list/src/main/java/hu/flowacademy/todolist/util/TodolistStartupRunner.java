@@ -1,7 +1,9 @@
 package hu.flowacademy.todolist.util;
 
+import hu.flowacademy.todolist.domain.SubtaskItem;
 import hu.flowacademy.todolist.domain.TodoItem;
 import hu.flowacademy.todolist.domain.User;
+import hu.flowacademy.todolist.repository.SubtaskItemRepository;
 import hu.flowacademy.todolist.repository.TodolistRepository;
 import hu.flowacademy.todolist.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
