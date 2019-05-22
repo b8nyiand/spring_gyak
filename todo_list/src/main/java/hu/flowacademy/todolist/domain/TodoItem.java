@@ -2,6 +2,7 @@ package hu.flowacademy.todolist.domain;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "todo_item")
@@ -71,5 +72,22 @@ public class TodoItem {
                 ", description='" + description + '\'' +
                 ", done=" + done +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof TodoItem)) return false;
+        TodoItem todoItem = (TodoItem) o;
+        return Objects.equals(id, todoItem.id) &&
+                Objects.equals(description, todoItem.description) &&
+                Objects.equals(done, todoItem.done) &&
+                Objects.equals(user, todoItem.user) &&
+                Objects.equals(subtaskItems, todoItem.subtaskItems);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, description, done, user, subtaskItems);
     }
 }

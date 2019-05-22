@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 
 @RunWith(SpringRunner.class)
 public class TodolistServiceTests {
@@ -37,6 +38,7 @@ public class TodolistServiceTests {
     public void setup() {
         TodoItem todoItemShouldBeFound = new TodoItem("ExTest1", "TestTodoItem", false);
         Mockito.when(todolistRepository.findByDescription(todoItemShouldBeFound.getDescription())).thenReturn(todoItemShouldBeFound);
+        Mockito.when(todolistRepository.save(any(TodoItem.class))).thenReturn(todoItemShouldBeFound);
     }
 
     @Test
@@ -45,6 +47,13 @@ public class TodolistServiceTests {
         TodoItem found = todolistService.getItemByDescription(description);
         assertThat(found.getDescription())
                 .isEqualTo(description);
+    }
+
+    @Test
+    public void whenTodoItemShouldBeFoundSaved_thenReturnTodoItemShouldBeFound() {
+        TodoItem todoItemShouldBeFound = new TodoItem("ExTest1", "TestTodoItem", false);
+        TodoItem found = todolistService.save(todoItemShouldBeFound);
+        assertThat(found).isEqualTo(todoItemShouldBeFound);
     }
 
 }
