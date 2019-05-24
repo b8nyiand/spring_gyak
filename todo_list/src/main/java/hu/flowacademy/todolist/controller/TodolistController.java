@@ -33,6 +33,7 @@ public class TodolistController {
     }
 
     @GetMapping("/list-items")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<List<TodoItem>> listTodoItems() {
         return ResponseEntity.ok(todolistService.listItems());
     }
